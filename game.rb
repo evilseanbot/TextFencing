@@ -45,10 +45,26 @@ event5.prompt = true
 event5.options = {"1" => "Europe", "2" => "Asia", "3" => "Africa"}
 event5.decision = "continent"
 
+event6 = StoryBranch.new()
+event6.text = "What country are you from?"
+event6.prompt = true;
+event6.decision = "country";
+
+def event6.process memory
+    if memory["continent"] == "1"
+        @options = {"1" => "Germany", "2" => "France", "3" => "Italy", "4" => "Spain"};
+    elsif memory["continent"] == "2"
+    	@options = {"1" => "China", "2" => "India", "3" => "Arab"};
+    elsif memory["continent"] == "3"
+    	@options = {"1" => "Ghana"}
+    end
+end
+
 events.next = event2
 event2.next = event3
 event3.next = event4
 event4.next = event5
+event5.next = event6;
 
 # Roll this off into its own function.
 
@@ -58,7 +74,7 @@ def gameloop events
     storyMemory = {}
 
 	while !gameOver
-		print "\n\n"
+		print "\n"
 
 		currentEvent.process storyMemory
 
