@@ -1,4 +1,4 @@
-def gameloop events
+def gameloop events bangs
     currentEvent = events
     gameOver = false
     storyMemory = {}
@@ -28,7 +28,7 @@ def gameloop events
 		end
 
 		if currentEvent.next == nil
-			gameOver = true
+			currentEvent = bangs_gameloop bangs storyMemory
 		else
 			currentEvent = currentEvent.next		
 		end
@@ -38,9 +38,7 @@ def gameloop events
 	print storyMemory
 end
 
-def bangs_gameloop bangs
-    storyMemory = {}
-    storyMemory[:wealth] = 1
+def bangs_gameloop bangs storyMemory
 
     for i in (0..10) 
     	print "\n Year: "
@@ -49,6 +47,7 @@ def bangs_gameloop bangs
             if bang.checkReqs storyMemory
                 print "\n"
                 print bang.text
+                return bang.branch
             end
         end
     end
