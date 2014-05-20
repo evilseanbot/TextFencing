@@ -9,7 +9,14 @@ end
 
 steal_bread_bang = Bang.new()
 steal_bread_bang.text = "You're very hungry, you want to steal some bread!"
-steal_bread_bang.branch = StoryBranch.new()
+
+steal_bread_event = StoryBranch.new()
+steal_bread_event.text = "You're very hungry, and you have a chance to steal some bread. Do you?"
+steal_bread_event.prompt = true
+steal_bread_event.options = {"1" => "yes", "2" => "no"}
+steal_bread_event.decision = "steal_bread_attempt"
+
+steal_bread_bang.branch = steal_bread_event
 
 def steal_bread_bang.checkReqs memory
     if memory[:wealth] > 3
