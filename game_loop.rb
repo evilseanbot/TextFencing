@@ -1,6 +1,4 @@
 def gameloop(events, bangs)
-    print bangs
-
     currentEvent = events
     gameOver = false
     storyMemory = {}
@@ -16,7 +14,7 @@ def gameloop(events, bangs)
 		print currentEvent.text
 
 		if (currentEvent.prompt)
-			prompt_gameloop currentEvent storyMemory
+			prompt_gameloop(currentEvent, storyMemory)
 		end
 
 		if currentEvent.next == nil
@@ -53,7 +51,7 @@ def bangs_gameloop(bangs, storyMemory)
     return nil
 end
 
-def prompt_gameloop currentEvent storyMemory
+def prompt_gameloop(currentEvent, storyMemory)
 	print "\n"
 	if (!currentEvent.textEntry) 
         print "Your options are:"

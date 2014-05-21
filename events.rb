@@ -61,7 +61,7 @@ def event6.process memory
     end
 end
 
-@events.next = event2
+# @events.next = event2
 event2.next = event3
 event3.next = event4
 event4.next = event5
